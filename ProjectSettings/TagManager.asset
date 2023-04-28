@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Horse
+  - Cow
+  - Chiken
+  - Pig
+  - Position
+  - OcupedPosition
   layers:
   - Default
   - TransparentFX
