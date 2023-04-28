@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private string tagCard1="1";
-    private string tagCard2="2";
+    private Card[] cards;
+    private Card card1,card2;  
     private int tryCounter = 0;
     private int starCounter = 0;
+    private int failedMatchCounter = 0;    
+    private bool cardsSelected = false;
+
     //private UIManager uIManager;
     void Start()
     {
+        cards = FindObjectsOfType<Card>();
        // uIManager=GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(tagCard1!= "1" && tagCard2 != "2")
+        if (failedMatchCounter >= 3)
+        {
+            MixCards();
+            failedMatchCounter = 0;
+            
+        }
+      
+        if(cardsSelected)
         {
             CardComparer();
+            DeselectCards();
+            
         }
         if (starCounter == 4) {
             Victory();
@@ -30,28 +43,27 @@ public class GameManager : MonoBehaviour
     void CardComparer()
     {
       
-        if (tagCard1 == tagCard2)
+        if (card1.tag == card2.tag)
         {
             starCounter += 1;
             print("match");            
         }
         else
         {
+            failedMatchCounter += 1;
             print("failedMatch");            
         }
-        tagCard1 = "1";
-        tagCard2 = "2";
+
     }
-    public bool setTagSelectedCards(string tag)
-    {
-        bool cardsSelected=false;
-        if (tagCard1 == "1")
+    public bool setSelectedCards(Card card)
+    {          
+        if (card1==(null))
         {
-            tagCard1 = tag;
+            card1 = card;
         }
-        else if (tagCard2 == "2")
-        {            
-            tagCard2 = tag;
+        else if (card2==(null))
+        {
+            card2 = card;
             cardsSelected = true;
             tryCounter += 1;
         }
@@ -61,5 +73,29 @@ public class GameManager : MonoBehaviour
     {
         //uIManager.ActivateVictoryPanel();
     }
+
+    public int getFailedMatchCounter()
+    {
+        return failedMatchCounter;
+    }
+
+    void DeselectCards()
+    {
+        card1 = null;
+        card2 = null;
+        cardsSelected = false;
+    }
+
+    void MixCards() {
+        cards[0].RestarTagsPositions();
+        for(int i=0; i < cards.Length; i++)
+        {
+            cards[i].RandomPosition();
+        }
+        
+    }
+
+
+
 
 }

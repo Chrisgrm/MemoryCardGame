@@ -8,6 +8,8 @@ TagManager:
   - Cow
   - Chiken
   - Pig
+  - Position
+  - OcupedPosition
   layers:
   - Default
   - TransparentFX
