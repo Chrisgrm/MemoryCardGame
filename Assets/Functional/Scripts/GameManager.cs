@@ -1,38 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
-    private Card[] cards;
+    private List<Card> cards;
     private Card card1,card2;  
     private int tryCounter = 0;
     private int starCounter = 0;
     private int failedMatchCounter = 0;    
-    private bool cardsSelected = false;
+    public bool cardsSelected = false;
+    private bool cardsCompared = false;
+
 
     //private UIManager uIManager;
     void Start()
     {
-        cards = FindObjectsOfType<Card>();
+        cards = FindObjectsOfType<Card>().ToList();
        // uIManager=GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+                
         if (failedMatchCounter >= 3)
         {
             MixCards();
-            failedMatchCounter = 0;
-            
+            failedMatchCounter = 0;            
         }
       
-        if(cardsSelected)
+        if(cardsSelected && !cardsCompared)
         {
-            CardComparer();
-            DeselectCards();
-            
+            CardComparer();            
+        }else if(cardsSelected && cardsCompared)
+        {
+            if (card2.AnimationFinished())
+            {
+                cardsCompared = false;  
+                card2.RestartAnimationsState();
+                DeselectCards();
+            }
         }
         if (starCounter == 4) {
             Victory();
@@ -43,15 +52,13 @@ public class GameManager : MonoBehaviour
     void CardComparer()
     {
       
-        if (card1.tag == card2.tag)
-        {
-            starCounter += 1;
-            print("match");            
+        if (card2.CompareTag(card1.tag))
+        {      
+            StartCoroutine(MatchAnimation());
         }
         else
         {
-            failedMatchCounter += 1;
-            print("failedMatch");            
+            StartCoroutine(BadMatchAnimation());            
         }
 
     }
@@ -63,7 +70,9 @@ public class GameManager : MonoBehaviour
         }
         else if (card2==(null))
         {
-            card2 = card;
+            
+            card2 = card;            
+            card2.SetSelectableCards(false);
             cardsSelected = true;
             tryCounter += 1;
         }
@@ -81,17 +90,42 @@ public class GameManager : MonoBehaviour
 
     void DeselectCards()
     {
+        
+        card2.SetSelectableCards(true);
         card1 = null;
         card2 = null;
         cardsSelected = false;
     }
 
     void MixCards() {
+        
         cards[0].RestarTagsPositions();
-        for(int i=0; i < cards.Length; i++)
+        cards = FindObjectsOfType<Card>().ToList();
+        for (int i=0; i < cards.Count; i++)
         {
             cards[i].RandomPosition();
         }
+        
+    }
+    IEnumerator  BadMatchAnimation()
+    {
+        cardsCompared = true;
+        failedMatchCounter += 1;
+        yield return new WaitForSeconds(1);
+        card1.StartBadMatchAnimation();
+        card2.StartBadMatchAnimation();
+        DeselectCards();
+        cardsCompared = false;
+    }
+
+    IEnumerator MatchAnimation()
+    {
+        cardsCompared = true;
+        starCounter += 1;
+        yield return new WaitForSeconds(1);        
+        card1.StartMatchAnimation();
+        card2.StartMatchAnimation();
+
         
     }
 
