@@ -70,6 +70,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   cardChild: {fileID: 6915409965894077227}
+  badMatchAnimationFinished: 0
+  matchAnimationFinished: 0
+  turnCardAnimationFinished: 0
+  movingCardsAnimation: 0
 --- !u!1001 &8181546143658316962
 PrefabInstance:
   m_ObjectHideFlags: 0
