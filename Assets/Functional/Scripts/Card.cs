@@ -13,10 +13,8 @@ public class Card : MonoBehaviour
     public MatchingCards animations;
     private bool isSelectable=true;
 
-
     void Start()
     {
-       
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         RandomPosition();        
     }
@@ -43,10 +41,8 @@ public class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
-            
         if (!isSelected && isSelectable)//&& animations.badMatchAnimationFinished)
-        {
-           
+        {  
             isSelected = true;
             isSelectable = false;
             animations.StartCoroutine("TurnCardAnimation");
@@ -55,10 +51,8 @@ public class Card : MonoBehaviour
                 
                 failedMatchCounter = gameManager.getFailedMatchCounter();
                 RestarCards();
-
-            }       
-        }        
-        
+            }
+        }      
     }
     void RestarCards()
     {

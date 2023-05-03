@@ -12,8 +12,7 @@ public class GameManager : MonoBehaviour
     private int failedMatchCounter = 0;    
     public bool cardsSelected = false;
     private bool cardsCompared = false;
-
-
+    
     //private UIManager uIManager;
     void Start()
     {
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
             MixCards();
             failedMatchCounter = 0;            
         }
-      
         if(cardsSelected && !cardsCompared)
         {
             CardComparer();            
@@ -80,6 +78,7 @@ public class GameManager : MonoBehaviour
     }
     private void Victory()
     {
+        AudioManager.Instance.PlaySimpleSound(AudioManager.Instance.victorySound);
         //uIManager.ActivateVictoryPanel();
     }
 
