@@ -12,7 +12,7 @@ public class MenuInicio : MonoBehaviour
 
     public void StartGame()
     {
-        //SceneManager.LoadScene(AnimationScene2);
+        SceneManager.LoadScene("GameScene");
         menuInicio.SetActive(false);
     }
 

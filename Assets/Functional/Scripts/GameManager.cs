@@ -12,13 +12,15 @@ public class GameManager : MonoBehaviour
     private int failedMatchCounter = 0;    
     public bool cardsSelected = false;
     private bool cardsCompared = false;
+    private UIManager uIManager;
+    private bool victory; 
 
 
     //private UIManager uIManager;
     void Start()
     {
         cards = FindObjectsOfType<Card>().ToList();
-       // uIManager=GameObject.Find("Canvas").GetComponent<UIManager>();
+        uIManager=GameObject.Find("CanvasPrincipal").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -43,9 +45,8 @@ public class GameManager : MonoBehaviour
                 DeselectCards();
             }
         }
-        if (starCounter == 4) {
-            Victory();
-            print("Victory");
+        if (starCounter == 4 && !victory) {
+            Victory();           
         }        
     }
 
@@ -80,7 +81,8 @@ public class GameManager : MonoBehaviour
     }
     private void Victory()
     {
-        //uIManager.ActivateVictoryPanel();
+        victory = true;
+        uIManager.ActivateVictoryPanel();
     }
 
     public int getFailedMatchCounter()
@@ -106,6 +108,10 @@ public class GameManager : MonoBehaviour
             cards[i].RandomPosition();
         }
         
+    }
+    public int getTryNumber()
+    {
+        return tryCounter;
     }
     IEnumerator  BadMatchAnimation()
     {
