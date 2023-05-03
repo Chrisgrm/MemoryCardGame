@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     public bool cardsSelected = false;
     private bool cardsCompared = false;
     private UIManager uIManager;
-    private bool victory; 
+    private bool victory;
+    private AudioManager audioManager;
+    
 
 
     //private UIManager uIManager;
@@ -21,6 +23,7 @@ public class GameManager : MonoBehaviour
     {
         cards = FindObjectsOfType<Card>().ToList();
         uIManager=GameObject.Find("CanvasPrincipal").GetComponent<UIManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
             }
         }
         if (starCounter == 4 && !victory) {
+            
             Victory();           
         }        
     }
@@ -83,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         victory = true;
         uIManager.ActivateVictoryPanel();
+        audioManager.PlaySimpleSound(audioManager.victorySound);
     }
 
     public int getFailedMatchCounter()
