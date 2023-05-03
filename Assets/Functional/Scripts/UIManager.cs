@@ -14,11 +14,17 @@ public class UIManager : MonoBehaviour
     private GameManager gameManager;
     public TMP_Text movimientosContadorVictoria;
     public Button volverAlMenu;
+    public Slider volumen; 
     void Start()
     {
         
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
       
+    }
+
+    public void CambiarVolumen()
+    {
+        AudioListener.volume = volumen.value;
     }
 
     
@@ -31,6 +37,11 @@ public class UIManager : MonoBehaviour
     public void BotonPausaFunc()
     {              
         panelPausa.SetActive(true);
+    }
+
+    public void BotorRegresarAlJuego()
+    {
+        panelPausa.SetActive(false);
     }
     public void BotonVolverAlMenu()
     {
