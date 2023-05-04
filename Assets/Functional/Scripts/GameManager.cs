@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private List<Card> cards;
     private Card card1,card2;  
     private int tryCounter = 0;
-    private int starCounter = 0;
+    public int starCounter = 0;
     private int failedMatchCounter = 0;    
     public bool cardsSelected = false;
     private bool cardsCompared = false;
@@ -49,8 +49,7 @@ public class GameManager : MonoBehaviour
             }
         }
         if (starCounter == 4 && !victory) {
-            
-            Victory();           
+            Victory();      
         }        
     }
 
@@ -85,13 +84,14 @@ public class GameManager : MonoBehaviour
     }
     private void Victory()
     {
+        StartCoroutine(ActivePanelVictoria());
         victory = true;
-        uIManager.ActivateVictoryPanel();
-        audioManager.PlaySimpleSound(audioManager.victorySound);
+
     }
 
     public int getFailedMatchCounter()
     {
+
         return failedMatchCounter;
     }
 
@@ -131,13 +131,21 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MatchAnimation()
     {
-        cardsCompared = true;
-        starCounter += 1;
-        yield return new WaitForSeconds(1);        
+        cardsCompared = true;        
+        yield return new WaitForSeconds(1);
+        
         card1.StartMatchAnimation();
         card2.StartMatchAnimation();
+        starCounter += 1;
 
-        
+
+    }
+
+    IEnumerator ActivePanelVictoria()
+    {
+        yield return new WaitForSeconds(1.5f);
+        uIManager.ActivateVictoryPanel();
+        audioManager.PlaySimpleSound(audioManager.victorySound);
     }
 
 

@@ -95,6 +95,7 @@ public class Card : MonoBehaviour
     }
     public bool AnimationFinished()
     {
+        
         return animations.matchAnimationFinished;
     }
 
