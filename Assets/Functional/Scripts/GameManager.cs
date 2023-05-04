@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         return failedMatchCounter;
     }
 
-    void DeselectCards()
+    public void DeselectCards()
     {
         
         card2.SetSelectableCards(true);

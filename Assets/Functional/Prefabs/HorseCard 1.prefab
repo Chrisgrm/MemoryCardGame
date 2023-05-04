@@ -178,6 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1089346606222279099}
   - component: {fileID: 1089346606222279098}
+  - component: {fileID: 1657782367}
   m_Layer: 0
   m_Name: HorseCard 1
   m_TagString: Horse
@@ -193,8 +194,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089346606222279096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.38, y: 0, z: 0.28999996}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3037460504502885564}
@@ -242,6 +243,19 @@ MonoBehaviour:
   matchAnimationFinished: 0
   turnCardAnimationFinished: 0
   movingCardsAnimation: 0
+--- !u!114 &1657782367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089346606222279096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d0e18c94753e247a00a48bd13a580f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: abe8a4b716742d24e81952944b3b02e7, type: 3}
 --- !u!1001 &1089346604255975823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -350,6 +364,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2115408945191196165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2408557808365340166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d0e18c94753e247a00a48bd13a580f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 0}
 --- !u!114 &3593113292697452353
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5362601205791221753}
   - component: {fileID: 5362601205791221750}
+  - component: {fileID: 1346996966}
   m_Layer: 0
   m_Name: CowCard 1
   m_TagString: Cow
@@ -109,8 +110,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5362601205791221748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.38, y: 0, z: 0.28999996}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8021704410640879397}
@@ -158,6 +159,19 @@ MonoBehaviour:
   matchAnimationFinished: 0
   turnCardAnimationFinished: 0
   movingCardsAnimation: 0
+--- !u!114 &1346996966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5362601205791221748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91d0e18c94753e247a00a48bd13a580f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 78dc36c7b60e48342961fa18575f61da, type: 3}
 --- !u!1 &6260885555926842496
 GameObject:
   m_ObjectHideFlags: 0
