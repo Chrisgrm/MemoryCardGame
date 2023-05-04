@@ -12,12 +12,18 @@ public class GameManager : MonoBehaviour
     private int failedMatchCounter = 0;    
     public bool cardsSelected = false;
     private bool cardsCompared = false;
+    private UIManager uIManager;
+    private bool victory;
+    private AudioManager audioManager;
     
+
+
     //private UIManager uIManager;
     void Start()
     {
         cards = FindObjectsOfType<Card>().ToList();
-       // uIManager=GameObject.Find("Canvas").GetComponent<UIManager>();
+        uIManager=GameObject.Find("CanvasPrincipal").GetComponent<UIManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -29,6 +35,7 @@ public class GameManager : MonoBehaviour
             MixCards();
             failedMatchCounter = 0;            
         }
+      
         if(cardsSelected && !cardsCompared)
         {
             CardComparer();            
@@ -41,9 +48,9 @@ public class GameManager : MonoBehaviour
                 DeselectCards();
             }
         }
-        if (starCounter == 4) {
-            Victory();
-            print("Victory");
+        if (starCounter == 4 && !victory) {
+            
+            Victory();           
         }        
     }
 
@@ -78,8 +85,9 @@ public class GameManager : MonoBehaviour
     }
     private void Victory()
     {
-        AudioManager.Instance.PlaySimpleSound(AudioManager.Instance.victorySound);
-        //uIManager.ActivateVictoryPanel();
+        victory = true;
+        uIManager.ActivateVictoryPanel();
+        audioManager.PlaySimpleSound(audioManager.victorySound);
     }
 
     public int getFailedMatchCounter()
@@ -87,7 +95,7 @@ public class GameManager : MonoBehaviour
         return failedMatchCounter;
     }
 
-    void DeselectCards()
+    public void DeselectCards()
     {
         
         card2.SetSelectableCards(true);
@@ -105,6 +113,10 @@ public class GameManager : MonoBehaviour
             cards[i].RandomPosition();
         }
         
+    }
+    public int getTryNumber()
+    {
+        return tryCounter;
     }
     IEnumerator  BadMatchAnimation()
     {

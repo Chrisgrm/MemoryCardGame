@@ -7,15 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
     public AudioClip enviromentSound;
     public AudioClip victorySound;
-
-
-    /*public AudioClip cowSound;
-    public AudioClip horseSound;
-    public AudioClip pigSound;
-    public AudioClip henSound;
-    public AudioClip starSound;
-    public AudioClip victorySound;
-    public AudioClip environmentSound; */
+    
 
     [SerializeField]private AudioSource soundEffects;
     [SerializeField]private AudioSource environmentMusic;
@@ -42,25 +34,7 @@ public class AudioManager : MonoBehaviour
         environmentMusic.Play();
     }
 
-    /*
-    public void PlayAnimalSound(string animal)
-    {
-        switch (animal)
-        {
-            case "Cow":
-                soundEffects.PlayOneShot(cowSound);
-                break;
-            case "Horse":
-                soundEffects.PlayOneShot(horseSound);
-                break;
-            case "Pig":
-                soundEffects.PlayOneShot(pigSound);
-                break;
-            case "Hen":
-                soundEffects.PlayOneShot(henSound);
-                break;
-        }
-    }*/ 
+
 
     public void PlayStarSound()
     {
