@@ -2612,7 +2612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enviromentSound: {fileID: 0}
-  victorySound: {fileID: 8300000, guid: 1623179fa19a11246b3cee3718208f0f, type: 3}
+  victorySound: {fileID: 8300000, guid: 89369fb693d4c5d40916085462e44969, type: 3}
   soundEffects: {fileID: 0}
   environmentMusic: {fileID: 2070055592}
 --- !u!4 &2070055591
