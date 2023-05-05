@@ -37,13 +37,17 @@ public class UIManager : MonoBehaviour
     public void BotonPausaFunc()
     {              
         panelPausa.SetActive(true);
-        Time.timeScale = 0;        
+        
+        Time.timeScale = 0;
+        
     }
 
     public void BotorRegresarAlJuego()
     {
-        panelPausa.SetActive(false);
+        
+        
         Time.timeScale = 1;
+        panelPausa.SetActive(false);
     }
     public void BotonVolverAlMenu()
     {
