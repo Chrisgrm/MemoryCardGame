@@ -8,16 +8,22 @@ public class GameManager : MonoBehaviour
     private List<Card> cards;
     private Card card1,card2;  
     private int tryCounter = 0;
-    private int starCounter = 0;
+    public int starCounter = 0;
     private int failedMatchCounter = 0;    
     public bool cardsSelected = false;
     private bool cardsCompared = false;
+    private UIManager uIManager;
+    private bool victory;
+    private AudioManager audioManager;
     
+
+
     //private UIManager uIManager;
     void Start()
     {
         cards = FindObjectsOfType<Card>().ToList();
-       // uIManager=GameObject.Find("Canvas").GetComponent<UIManager>();
+        uIManager=GameObject.Find("CanvasPrincipal").GetComponent<UIManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -29,6 +35,7 @@ public class GameManager : MonoBehaviour
             MixCards();
             failedMatchCounter = 0;            
         }
+      
         if(cardsSelected && !cardsCompared)
         {
             CardComparer();            
@@ -41,9 +48,8 @@ public class GameManager : MonoBehaviour
                 DeselectCards();
             }
         }
-        if (starCounter == 4) {
-            Victory();
-            print("Victory");
+        if (starCounter == 4 && !victory) {
+            Victory();      
         }        
     }
 
@@ -78,16 +84,19 @@ public class GameManager : MonoBehaviour
     }
     private void Victory()
     {
-        AudioManager.Instance.PlaySimpleSound(AudioManager.Instance.victorySound);
-        //uIManager.ActivateVictoryPanel();
+        StartCoroutine(ActivePanelVictoria());
+        victory = true;
+        GameObject.Find("Main Camera").GetComponent<AudioSource>().Stop();
+
     }
 
     public int getFailedMatchCounter()
     {
+
         return failedMatchCounter;
     }
 
-    void DeselectCards()
+    public void DeselectCards()
     {
         
         card2.SetSelectableCards(true);
@@ -106,6 +115,10 @@ public class GameManager : MonoBehaviour
         }
         
     }
+    public int getTryNumber()
+    {
+        return tryCounter;
+    }
     IEnumerator  BadMatchAnimation()
     {
         cardsCompared = true;
@@ -119,13 +132,23 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MatchAnimation()
     {
-        cardsCompared = true;
-        starCounter += 1;
-        yield return new WaitForSeconds(1);        
+        cardsCompared = true;        
+        yield return new WaitForSeconds(1);
+        
         card1.StartMatchAnimation();
         card2.StartMatchAnimation();
+        starCounter += 1;
+        card1.audioSource.Play();
+        card2.audioSource.Play();
 
-        
+
+    }
+
+    IEnumerator ActivePanelVictoria()
+    {
+        yield return new WaitForSeconds(1.5f);
+        uIManager.ActivateVictoryPanel();
+        audioManager.PlaySimpleSound(audioManager.victorySound);
     }
 
 

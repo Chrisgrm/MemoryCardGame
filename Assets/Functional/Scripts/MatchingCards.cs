@@ -10,7 +10,7 @@ public class MatchingCards : MonoBehaviour
     //private Vector3 endPosition = new Vector3(10, 10, 10);
     private Vector3 startPosition;
     private float desiredDuration = 1f;
-    private float desiredMoveDuration = 5f;
+    private float desiredMoveDuration = 2f;
     private float elapsedTime;
     [SerializeField] AnimationCurve curve;
     public GameObject cardChild;
