@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     private void Victory()
     {
         StartCoroutine(ActivePanelVictoria());
+        GameObject.Find("Main Camera").GetComponent<AudioSource>().Stop();
         victory = true;
 
     }
@@ -133,10 +134,11 @@ public class GameManager : MonoBehaviour
     {
         cardsCompared = true;        
         yield return new WaitForSeconds(1);
-        
         card1.StartMatchAnimation();
         card2.StartMatchAnimation();
         starCounter += 1;
+        card1.audioSource.Play();
+        card2.audioSource.Play();
 
 
     }

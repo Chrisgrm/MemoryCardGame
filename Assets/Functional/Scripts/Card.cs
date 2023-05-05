@@ -12,6 +12,7 @@ public class Card : MonoBehaviour
     private int failedMatchCounter;
     public MatchingCards animations;
     private bool isSelectable=true;
+    public AudioSource audioSource;
 
     void Start()
     {
